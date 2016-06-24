@@ -23,6 +23,7 @@ class GameScene: SKScene {
     let readyLabel: SKLabelNode!
     let gameOverLabel: SKLabelNode
     let playGameLabel: SKLabelNode
+    let countDownLabel: SKLabelNode
     
     // Game Sprite. this is a game object
     let gameSprite: SKSpriteNode
@@ -35,6 +36,7 @@ class GameScene: SKScene {
     var readyState: GKState!        // These represent each of the
     var playingState: GKState!      // possible states.
     var gameOverState: GKState!     //
+    var countDownState: GKState!
     
     var lastUpdateTime: CFTimeInterval = 0
     
@@ -44,6 +46,7 @@ class GameScene: SKScene {
         gameOverLabel = SKLabelNode(fontNamed: "Helvetica")
         playGameLabel = SKLabelNode(fontNamed: "Helvetica")
         currentStateLabel = SKLabelNode(fontNamed: "Helvetica")
+        countDownLabel = SKLabelNode(fontNamed: "Helvetica")
         
         // Create game sprite
         gameSprite = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 40, height: 40))
@@ -56,6 +59,14 @@ class GameScene: SKScene {
         gameOverLabel.name = "gameOver"
         playGameLabel.text = "- Play Game -"
         playGameLabel.name = "play"
+        countDownLabel.name = "countDown"
+        countDownLabel.fontSize = 128
+        countDownLabel.text = "0"
+        countDownLabel.verticalAlignmentMode = .Center
+        countDownLabel.horizontalAlignmentMode = .Center
+        countDownLabel.position.x = size.width / 2
+        countDownLabel.position.y = size.height / 2
+        countDownLabel.hidden = true
         
         currentStateLabel.text = "Current State"
         currentStateLabel.horizontalAlignmentMode = .Left
@@ -70,9 +81,10 @@ class GameScene: SKScene {
         readyState = ReadyState(scene: self)
         playingState = PlayingState(scene: self)
         gameOverState = GameOverState(scene: self)
+        countDownState = CountDownState(scene: self)
         
         // Create an instance of the state machine and provide an array of states.
-        gameState = GKStateMachine(states: [readyState, playingState, gameOverState])
+        gameState = GKStateMachine(states: [readyState, playingState, gameOverState, countDownState])
         
         // Add the labels to the display hierarchy.
         addChild(readyLabel)
@@ -80,6 +92,7 @@ class GameScene: SKScene {
         addChild(playGameLabel)
         addChild(currentStateLabel)
         addChild(gameSprite)
+        addChild(countDownLabel)
     }
     
     
@@ -130,7 +143,7 @@ class GameScene: SKScene {
                     
                     case "play":
                         print("Play Tapped")
-                        gameState.enterState(PlayingState) // Change to Playing State 
+                        gameState.enterState(CountDownState) // Change to Playing State
                     
                     case "gameSprite":
                         print("Game Sprite Tapped")

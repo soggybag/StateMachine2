@@ -16,6 +16,7 @@
 		D817395D1D18B2A800FA78CE /* ReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817395C1D18B2A800FA78CE /* ReadyState.swift */; };
 		D817395F1D18B2D700FA78CE /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817395E1D18B2D700FA78CE /* PlayingState.swift */; };
 		D81739611D18B2FA00FA78CE /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81739601D18B2FA00FA78CE /* GameOverState.swift */; };
+		D81739B81D1DD0DF00FA78CE /* CountDownState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81739B71D1DD0DF00FA78CE /* CountDownState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D817395C1D18B2A800FA78CE /* ReadyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadyState.swift; sourceTree = "<group>"; };
 		D817395E1D18B2D700FA78CE /* PlayingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		D81739601D18B2FA00FA78CE /* GameOverState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
+		D81739B71D1DD0DF00FA78CE /* CountDownState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				D81739461D18B1E100FA78CE /* AppDelegate.swift */,
 				D817394A1D18B1E100FA78CE /* GameScene.swift */,
+				D81739B71D1DD0DF00FA78CE /* CountDownState.swift */,
 				D817395C1D18B2A800FA78CE /* ReadyState.swift */,
 				D817395E1D18B2D700FA78CE /* PlayingState.swift */,
 				D81739601D18B2FA00FA78CE /* GameOverState.swift */,
@@ -150,6 +153,7 @@
 				D817394B1D18B1E100FA78CE /* GameScene.swift in Sources */,
 				D81739611D18B2FA00FA78CE /* GameOverState.swift in Sources */,
 				D817394D1D18B1E100FA78CE /* GameViewController.swift in Sources */,
+				D81739B81D1DD0DF00FA78CE /* CountDownState.swift in Sources */,
 				D81739471D18B1E100FA78CE /* AppDelegate.swift in Sources */,
 				D817395F1D18B2D700FA78CE /* PlayingState.swift in Sources */,
 				D817395D1D18B2A800FA78CE /* ReadyState.swift in Sources */,

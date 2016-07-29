@@ -84,5 +84,5 @@ This state needs to add an action to the box that will make it rotate. This stat
 
 This method is called on a state when exiting to a new state. 
 
-![screenshot](screenshot.png)
+![screenshot-1](screenshot-1.png)
 

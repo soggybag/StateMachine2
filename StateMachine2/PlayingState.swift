@@ -17,22 +17,22 @@ class PlayingState: GKState {
         self.scene = scene
     }
     
-    override func didEnterWithPreviousState(previousState: GKState?) {
+    override func didEnter(from previousState: GKState?) {
         print("Playing state entered from state: \(previousState)")
         scene.currentStateLabel.text = "Playing"
     }
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }
     
-    override func willExitWithNextState(nextState: GKState) {
+    override func willExit(to nextState: GKState) {
         //
     }
     
     
     // This method is called by the state machine when this is the current state.
-    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+    override func update(deltaTime seconds: TimeInterval) {
         // print("Playing State update:\(seconds)")
         
         // In this state we'll update the screen every frame
@@ -42,7 +42,7 @@ class PlayingState: GKState {
         
         // If the sprite gets to the far side of the screen game is over
         if scene.gameSprite.position.x > scene.frame.size.width {
-            scene.gameState.enterState(GameOverState)   // Enter Game Over state
+            scene.gameState.enter(GameOverState)   // Enter Game Over state
         }
     }
 }

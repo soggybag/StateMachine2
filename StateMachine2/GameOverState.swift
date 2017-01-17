@@ -17,26 +17,26 @@ class GameOverState: GKState {
         self.scene = scene
     }
     
-    override func didEnterWithPreviousState(previousState: GKState?) {
+    override func didEnter(from previousState: GKState?) {
         print("Game Over state entered from state: \(previousState)")
         scene.currentStateLabel.text = "Game Over"
         
         // When we enter the game over state the game sprite will spin
-        let rotateAction = SKAction.repeatActionForever(SKAction.rotateByAngle(1.0, duration: 1))
-        scene.gameSprite.runAction(rotateAction)
+        let rotateAction = SKAction.repeatForever(SKAction.rotate(byAngle: 1.0, duration: 1))
+        scene.gameSprite.run(rotateAction)
     }
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }
     
-    override func willExitWithNextState(nextState: GKState) {
+    override func willExit(to nextState: GKState) {
         // After we exit this state the game sprite should stop spinning and reset 
         scene.gameSprite.removeAllActions()
         scene.gameSprite.zRotation = 0
     }
     
-    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+    override func update(deltaTime seconds: TimeInterval) {
         print("Game over State update")
     }
 }

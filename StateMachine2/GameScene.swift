@@ -8,8 +8,22 @@
 
 
 
-// This example covers basic concepts of GKStateMachine
+/* 
+ 
+ This example covers basic concepts of GKStateMachine.
+ GKStateMachine and GKState are part of the GameplayKit library.
+ 
+ State machines break up code for running your games into state objects. 
+ A state manages an object by providing hooks for thinsg like:
+ 
+ 1) Entering a state 
+ 2) Exiting a state
+ 2) Update
+ 
+ Use state machine to detangle a complex web of state variables and 
+ conditional logic.
 
+*/
 
 
 
@@ -49,7 +63,7 @@ class GameScene: SKScene {
         countDownLabel = SKLabelNode(fontNamed: "Helvetica")
         
         // Create game sprite
-        gameSprite = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 40, height: 40))
+        gameSprite = SKSpriteNode(color: UIColor.red, size: CGSize(width: 40, height: 40))
         gameSprite.name = "gameSprite"
         
         // Configure labels
@@ -62,17 +76,17 @@ class GameScene: SKScene {
         countDownLabel.name = "countDown"
         countDownLabel.fontSize = 128
         countDownLabel.text = "0"
-        countDownLabel.verticalAlignmentMode = .Center
-        countDownLabel.horizontalAlignmentMode = .Center
+        countDownLabel.verticalAlignmentMode = .center
+        countDownLabel.horizontalAlignmentMode = .center
         countDownLabel.position.x = size.width / 2
         countDownLabel.position.y = size.height / 2
-        countDownLabel.hidden = true
+        countDownLabel.isHidden = true
         
         currentStateLabel.text = "Current State"
-        currentStateLabel.horizontalAlignmentMode = .Left
-        currentStateLabel.verticalAlignmentMode = .Bottom
+        currentStateLabel.horizontalAlignmentMode = .left
+        currentStateLabel.verticalAlignmentMode = .bottom
         currentStateLabel.fontSize = 24
-        currentStateLabel.color = UIColor.redColor()
+        currentStateLabel.color = UIColor.red
         
         super.init(size: size)
         
@@ -102,7 +116,7 @@ class GameScene: SKScene {
     
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here */
         
         // Get the center of the screen, use this to position the labels.
@@ -121,29 +135,29 @@ class GameScene: SKScene {
         gameSprite.position.y = size.height - 40
         
         // Enter the default state
-        gameState.enterState(ReadyState)
+        gameState.enter(ReadyState)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         
         // Check for touches. Touching a label will change the state.
         if let touch = touches.first {
-            let location = touch.locationInNode(self)
-            let node = nodeAtPoint(location)
+            let location = touch.location(in: self)
+            let node = atPoint(location)
             if let name = node.name {
                 switch name {
                     case "ready":
                         print("Ready Tapped")
-                        gameState.enterState(ReadyState) // Change to Ready State
+                        gameState.enter(ReadyState) // Change to Ready State
                     
                     case "gameOver":
                         print("Game Over Tapped")
-                        gameState.enterState(GameOverState) // Change to Game Over State
+                        gameState.enter(GameOverState) // Change to Game Over State
                     
                     case "play":
                         print("Play Tapped")
-                        gameState.enterState(CountDownState) // Change to Playing State
+                        gameState.enter(CountDownState) // Change to Playing State
                     
                     case "gameSprite":
                         print("Game Sprite Tapped")
@@ -161,12 +175,12 @@ class GameScene: SKScene {
         }
     }
    
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
         
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        gameState.updateWithDeltaTime(deltaTime)
+        gameState.update(deltaTime: deltaTime)
     }
 }
 

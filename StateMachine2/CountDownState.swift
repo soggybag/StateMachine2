@@ -24,36 +24,38 @@ class CountDownState: GKState {
         self.scene = scene
     }
     
-    override func didEnterWithPreviousState(previousState: GKState?) {
+    override func didEnter(from previousState: GKState?) {
         // TODO: Show Timer
         counter = 3
         
-        scene.countDownLabel.hidden = false
-        let wait = SKAction.waitForDuration(1)
+        scene.countDownLabel.isHidden = false
+        let wait = SKAction.wait(forDuration: 1)
         
-        let count = SKAction.runBlock {
+        let count = SKAction.run {
             self.counter -= 1
         }
         
-        let playGame = SKAction.runBlock { 
-            self.stateMachine?.enterState(PlayingState)
+        let playGame = SKAction.run { 
+            self.stateMachine?.enter(PlayingState)
         }
         let sequence = SKAction.sequence([wait, count, wait, count, wait, count, wait, playGame])
     
-        scene.runAction(sequence)
+        scene.run(sequence)
+        
+        scene.currentStateLabel.text = "Count Down"
     }
     
-    override func willExitWithNextState(nextState: GKState) {
+    override func willExit(to nextState: GKState) {
         // TODO: Hide Timer
-        scene.countDownLabel.hidden = true
+        scene.countDownLabel.isHidden = true
     }
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         //
         return true
     }
     
-    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+    override func update(deltaTime seconds: TimeInterval) {
         //
     }
     

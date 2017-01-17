@@ -25,22 +25,23 @@ class ReadyState: GKState {
     }
     
     // This method is called when the state machine enters this state
-    override func didEnterWithPreviousState(previousState: GKState?) {
+    override func didEnter(from previousState: GKState?) {
         print("Ready state entered from state: \(previousState)")
         // When entering this state we'll do a few things.
         scene.currentStateLabel.text = "Ready"  // Show the state in the label
         scene.gameSprite.position.x = 0         // Reset the position of the game sprite
     }
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }
     
-    override func willExitWithNextState(nextState: GKState) {
+    override func willExit(to nextState: GKState) {
         //
+        
     }
     
-    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+    override func update(deltaTime seconds: TimeInterval) {
         // print("Ready State update")
         
     }

@@ -135,7 +135,7 @@ class GameScene: SKScene {
         gameSprite.position.y = size.height - 40
         
         // Enter the default state
-        gameState.enter(ReadyState)
+        gameState.enter(ReadyState.self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -149,15 +149,15 @@ class GameScene: SKScene {
                 switch name {
                     case "ready":
                         print("Ready Tapped")
-                        gameState.enter(ReadyState) // Change to Ready State
+                        gameState.enter(ReadyState.self) // Change to Ready State
                     
                     case "gameOver":
                         print("Game Over Tapped")
-                        gameState.enter(GameOverState) // Change to Game Over State
+                        gameState.enter(GameOverState.self) // Change to Game Over State
                     
                     case "play":
                         print("Play Tapped")
-                        gameState.enter(CountDownState) // Change to Playing State
+                        gameState.enter(CountDownState.self) // Change to Playing State
                     
                     case "gameSprite":
                         print("Game Sprite Tapped")

@@ -42,7 +42,7 @@ class PlayingState: GKState {
         
         // If the sprite gets to the far side of the screen game is over
         if scene.gameSprite.position.x > scene.frame.size.width {
-            scene.gameState.enter(GameOverState)   // Enter Game Over state
+          scene.gameState.enter(GameOverState.self)   // Enter Game Over state
         }
     }
 }

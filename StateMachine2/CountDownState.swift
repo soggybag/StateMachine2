@@ -36,7 +36,7 @@ class CountDownState: GKState {
         }
         
         let playGame = SKAction.run { 
-            self.stateMachine?.enter(PlayingState)
+          self.stateMachine?.enter(PlayingState.self)
         }
         let sequence = SKAction.sequence([wait, count, wait, count, wait, count, wait, playGame])
     

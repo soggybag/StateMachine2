@@ -27,6 +27,7 @@ class GameOverState: GKState {
   }
   
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+    
     return true
   }
   

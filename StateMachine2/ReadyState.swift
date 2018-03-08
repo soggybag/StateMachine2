@@ -37,8 +37,8 @@ class ReadyState: GKState {
   }
   
   override func willExit(to nextState: GKState) {
-    //
     
+    print("Will Exit Ready State")
   }
   
   override func update(deltaTime seconds: TimeInterval) {

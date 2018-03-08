@@ -55,6 +55,16 @@ class GameScene: SKScene {
   
   var lastUpdateTime: TimeInterval = 0
   
+  var counter: Int = 0 {
+    didSet {
+      countDownLabel.text = "\(counter)"
+    }
+  }
+  
+  
+  
+  // MARK: Init
+  
   override init(size: CGSize) {
     // Create labels
     readyLabel = SKLabelNode(fontNamed: "Helvetica")
@@ -114,6 +124,8 @@ class GameScene: SKScene {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: Scene Lifecycle
+  
   override func didMove(to view: SKView) {
     /* Setup your scene here */
     
@@ -135,6 +147,9 @@ class GameScene: SKScene {
     // Enter the default state
     gameState.enter(ReadyState.self)
   }
+  
+  
+  // MARK: Touch Events
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     /* Called when a touch begins */
@@ -173,12 +188,41 @@ class GameScene: SKScene {
     }
   }
   
+  // MARK: Update
+  
   override func update(_ currentTime: TimeInterval) {
     /* Called before each frame is rendered */
     
     let deltaTime = currentTime - lastUpdateTime
     lastUpdateTime = currentTime
     gameState.update(deltaTime: deltaTime)
+  }
+  
+  // MARK: Utilities
+  
+  func hideCountDown() {
+    countDownLabel.isHidden = true
+  }
+  
+  func startCountDown() {
+    // TODO: Show Timer
+    counter = 3
+
+    countDownLabel.isHidden = false
+    let wait = SKAction.wait(forDuration: 1)
+
+    let count = SKAction.run {
+      self.counter -= 1
+    }
+
+    let playGame = SKAction.run {
+      self.gameState.enter(PlayingState.self)
+    }
+    let sequence = SKAction.sequence([wait, count, wait, count, wait, count, wait, playGame])
+
+    run(sequence)
+    
+    currentStateLabel.text = "Count Down"
   }
 }
 

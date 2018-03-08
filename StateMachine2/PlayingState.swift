@@ -23,7 +23,11 @@ class PlayingState: GKState {
   }
   
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-    return true
+    // PlayingState can only transition to GameOverState. 
+    if stateClass == GameOverState.self {
+      return true
+    }
+    return false
   }
   
   override func willExit(to nextState: GKState) {
